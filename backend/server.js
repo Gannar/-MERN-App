@@ -27,3 +27,10 @@ const PORT = process.env.PORT || 5000
 app.listen(PORT,()=>{
  console.log(`Server running on ${PORT}`)
 })
+const path = require("path")
+
+app.use(express.static(path.join(__dirname,"public/build")))
+
+app.get("*",(req,res)=>{
+ res.sendFile(path.join(__dirname,"public/build/index.html"))
+})
